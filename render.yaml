@@ -20,4 +20,4 @@ services:
     staticPublishPath: ./dist
     envVars:
       - key: VITE_API_URL
-        value: https://documind-api.onrender.com
+        value: https://documind-api-2kk.onrender.com
