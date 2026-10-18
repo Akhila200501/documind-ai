@@ -116,7 +116,7 @@ venv\Scripts\activate  # Windows
 # source venv/bin/activate  # Mac/Linux
 
 # Install dependencies
-pip install fastapi uvicorn python-multipart pymupdf chromadb google-genai
+pip install -r requirements.txt
 
 # Add your API key
 # Create a .env file:
@@ -152,6 +152,10 @@ Frontend runs at `http://localhost:5173`
 4. Click **"Ask Questions"**
 5. Type any question about your document
 6. Get an AI-generated answer with source citations
+
+## Deploy to Render
+
+The root `render.yaml` defines the FastAPI backend and Vite frontend as separate Render services. Push the project to a GitHub repository, then create a Blueprint in Render using that repository. During setup, provide `GEMINI_API_KEY` as a secret in Render; do not commit it to the repository. The frontend is configured to call `https://documind-api.onrender.com`; update `VITE_API_URL` in the Blueprint if Render assigns the backend a different hostname.
 
 ---
 

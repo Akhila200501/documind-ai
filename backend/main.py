@@ -14,8 +14,11 @@ from google.genai import types
 import uuid
 
 
-GEMINI_API_KEY = ""
-client = genai.Client(api_key=GEMINI_API_KEY)
+def get_gemini_client():
+    api_key = os.getenv("GEMINI_API_KEY")
+    if not api_key:
+        raise HTTPException(status_code=503, detail="GEMINI_API_KEY is not configured")
+    return genai.Client(api_key=api_key)
 
 app = FastAPI(title="DocuMind AI", version="1.0.0")
 
@@ -62,7 +65,7 @@ def chunk_text(text: str, size: int = 400, overlap: int = 40) -> list:
     return chunks
 
 def embed(text: str, task: str = "RETRIEVAL_DOCUMENT") -> list:
-    result = client.models.embed_content(
+    result = get_gemini_client().models.embed_content(
         model="gemini-embedding-001",
         contents=text,
         config=types.EmbedContentConfig(task_type=task)
@@ -75,7 +78,7 @@ def root():
 
 @app.get("/models")
 def list_models():
-    models = client.models.list()
+    models = get_gemini_client().models.list()
     return {"models": [m.name for m in models]}
 
 @app.post("/upload")
@@ -159,7 +162,7 @@ QUESTION: {req.question}
 
 Give a clear, detailed answer with source citations."""
 
-        response = client.models.generate_content(
+        response = get_gemini_client().models.generate_content(
             model="gemini-2.0-flash",
             contents=prompt
         )

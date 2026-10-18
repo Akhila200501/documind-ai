@@ -1,0 +1,6 @@
+chromadb
+fastapi
+google-genai
+pymupdf
+python-multipart
+uvicorn[standard]
