@@ -155,7 +155,7 @@ Frontend runs at `http://localhost:5173`
 
 ## Deploy to Render
 
-The root `render.yaml` defines the FastAPI backend and Vite frontend as separate Render services. Push the project to a GitHub repository, then create a Blueprint in Render using that repository. During setup, provide `GEMINI_API_KEY` as a secret in Render; do not commit it to the repository. The frontend is configured to call `https://documind-api.onrender.com`; update `VITE_API_URL` in the Blueprint if Render assigns the backend a different hostname.
+The root `render.yaml` defines the FastAPI backend and Vite frontend as separate Render services, with the backend on Render's free plan. Push the project to a GitHub repository, then create a Blueprint in Render using that repository. During setup, provide `GEMINI_API_KEY` as a secret in Render; do not commit it to the repository. The frontend is configured to call `https://documind-api.onrender.com`; update `VITE_API_URL` in the Blueprint if Render assigns the backend a different hostname. Free services can sleep while idle, and this app's in-memory document index resets when the backend restarts.
 
 ---
 
