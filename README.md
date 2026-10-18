@@ -157,6 +157,10 @@ Frontend runs at `http://localhost:5173`
 
 The root `render.yaml` defines the FastAPI backend and Vite frontend as separate Render services, with the backend on Render's free plan. Push the project to a GitHub repository, then create a Blueprint in Render using that repository. During setup, provide `GEMINI_API_KEY` as a secret in Render; do not commit it to the repository. The frontend calls `https://documind-api-2kk.onrender.com`. Free services can sleep while idle, and this app's in-memory document index resets when the backend restarts.
 
+## Deploy the frontend to GitHub Pages
+
+GitHub Actions builds and publishes the frontend on each push to `main` at `https://akhila200501.github.io/documind-ai/`. The backend remains hosted on Render.
+
 ---
 
 ## Why RAG?
